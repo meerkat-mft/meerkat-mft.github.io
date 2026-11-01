@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Meerkat MFT</title>
-  <meta name="description" content="Meerkat MFT is a managed file transfer orchestrator in early development that will be open source, designed so it can direct every delivery without being able to read your files.">
+  <meta name="description" content="Meerkat MFT is an early-stage managed file transfer orchestrator designed to direct every delivery without being able to read your files.">
   <meta name="theme-color" content="#14202E">
   <link rel="icon" href="/meerkat-logo.svg" type="image/svg+xml">
   <link rel="icon" href="/meerkat-icon-32.png" type="image/png" sizes="32x32">
@@ -174,8 +174,8 @@
       <a class="brand" href="/"><svg viewBox="0 0 512 512" aria-hidden="true"><circle cx="256" cy="256" r="248" fill="#1B2A3B"/><clipPath id="brandclip"><circle cx="256" cy="256" r="248"/></clipPath><g clip-path="url(#brandclip)"><g transform="translate(-36 -72) scale(1.12)"><path fill="#E2A04A" stroke="#E2A04A" stroke-width="10" stroke-linejoin="round" d="M400 229 L308 158 Q298 150 284 148 L246 146 Q226 146 214 160 L198 180 Q190 190 192 202 L204 272 L156 530 L322 530 L300 332 L292 274 Z"/><path fill="#F6E3C2" stroke="#F6E3C2" stroke-width="10" stroke-linejoin="round" d="M292 274 L300 332 L322 530 L254 530 L254 356 Q256 330 272 298 Z"/><path fill="#14202E" d="M204 184 Q206 166 232 166 Q236 190 216 208 Q206 204 204 184 Z"/><path fill="#14202E" d="M254 198 Q290 190 326 216 Q292 234 262 222 Q246 212 254 198 Z"/><path fill="#8A4F1D" stroke="#8A4F1D" stroke-width="10" stroke-linejoin="round" d="M372 207 L400 229 L368 243 Q362 224 372 207 Z"/></g></g></svg>Meerkat MFT</a>
       <span class="status">Early development</span>
     </div>
-    <h1 class="claim"><span>Your files,<br>in sight.</span><span><em>Never in reach.</em></span></h1>
-    <p class="sub">An orchestrator that directs every transfer, designed so it can't read a single file.</p>
+    <h1 class="claim"><span>Managed file transfer</span><span><em>that doesn't hold your files.</em></span></h1>
+    <p class="sub">An orchestrator directs and records every delivery. It can't read your files or credentials, or send them anywhere your agents don't allow.</p>
     <svg class="sentry" viewBox="150 140 262 392" role="img" aria-label="A meerkat standing guard, looking out to the right">
       <path fill="#E2A04A" stroke="#E2A04A" stroke-width="10" stroke-linejoin="round" d="M400 229 L308 158 Q298 150 284 148 L246 146 Q226 146 214 160 L198 180 Q190 190 192 202 L204 272 L156 530 L322 530 L300 332 L292 274 Z"/>
       <path fill="#F6E3C2" stroke="#F6E3C2" stroke-width="10" stroke-linejoin="round" d="M292 274 L300 332 L322 530 L254 530 L254 356 Q256 330 272 298 Z"/>
@@ -190,14 +190,14 @@
       <div class="pair">
         <div>
           <p class="label">What is it?</p>
-          <h2>File exchange for businesses that can't lose track.</h2>
+          <h2>File transfer for businesses that can't lose track.</h2>
           <p class="lede">Companies send files to banks, suppliers, and partners all day. Payroll, invoices, patient records, orders.</p>
-          <p class="lede">Managed file transfer makes that automatic, encrypted, and provable. Meerkat is a new take on it, designed so the system in charge never holds the keys to your files.</p>
+          <p class="lede">Managed file transfer makes that automatic, encrypted, and provable. Meerkat is designed so the system in charge never holds the keys to your files.</p>
         </div>
         <div>
           <p class="label">Why it exists</p>
           <h2>File transfer servers keep making headlines.</h2>
-          <p class="lede">Internet-facing file transfer software has become a favourite target, because one flaw can expose everything passing through it. Meerkat starts from a different question: what if the system in charge added no internet-facing server, and could not read the files it directs?</p>
+          <p class="lede">Internet-facing file transfer software has become a favourite target, because one flaw can expose everything passing through it. Meerkat adds no internet-facing server of its own.</p>
         </div>
       </div>
     </section>
@@ -230,25 +230,25 @@
       <p class="label">Standing orders</p>
       <h2>Three rules the design doesn't bend.</h2>
       <ol class="orders block">
-        <li><span>01</span><h3>Nothing needs to face the internet.</h3><p>Agents dial out, and the orchestrator and relay belong on a private network. You bring your own partner endpoints, so Meerkat adds no internet-facing server to attack.</p></li>
-        <li><span>02</span><h3>The orchestrator can't read your files or your credentials.</h3><p>Files are encrypted between agents, and endpoint credentials are sealed to the agents that use them.</p></li>
+        <li><span>01</span><h3>Meerkat adds nothing that faces the internet.</h3><p>Agents dial out, and the orchestrator and relay belong on a private network. Partners use an endpoint you own, so Meerkat adds no internet-facing server to attack.</p></li>
+        <li><span>02</span><h3>The orchestrator can't read your files or your credentials.</h3><p>Files are encrypted between agents, and endpoint credentials are sealed to the agents that use them. Each agent keeps a local allowlist the orchestrator can't change, so it can't send files anywhere else.</p></li>
         <li><span>03</span><h3>No file moves without evidence.</h3><p>Audit records are hash-chained, signed, and checkable outside the database.</p></li>
       </ol>
     </section>
 
     <section>
       <p class="label">The difference</p>
-      <h2>Same job. Different risks.</h2>
+      <h2>How it differs from typical MFT.</h2>
       <table class="compare block">
         <thead><tr><th scope="col">&nbsp;</th><th scope="col">Typical MFT</th><th scope="col">Meerkat, as designed</th></tr></thead>
         <tbody>
           <tr><th scope="row">Internet-facing server</th><td>Usually part of the product</td><td>None of its own</td></tr>
-          <tr><th scope="row">File contents</th><td>Pass through the platform</td><td>Unreadable to it</td></tr>
+          <tr><th scope="row">File contents</th><td>Pass through the platform</td><td>Unreadable to the orchestrator</td></tr>
           <tr><th scope="row">Endpoint credentials</th><td>Held by the platform</td><td>Sealed to agents</td></tr>
-          <tr><th scope="row">Audit evidence</th><td>Logs, usually exportable</td><td>Signed, verifiable outside it</td></tr>
+          <tr><th scope="row">Audit evidence</th><td>Logs, usually exportable</td><td>Signed, verifiable outside Meerkat</td></tr>
         </tbody>
       </table>
-      <p class="note">A general comparison. Individual products vary.</p>
+      <p class="note">Individual products vary.</p>
     </section>
 
     <section>
@@ -263,8 +263,8 @@
 
     <section>
       <p class="label">Visual flows</p>
-      <h2>Draw it. Don't script it.</h2>
-      <p class="lede">Flows are built by dropping cards onto a canvas and connecting them. Triggers, conditions, destinations, and failure paths stay visible, so an auditor can read one too.</p>
+      <h2>Build flows on a canvas.</h2>
+      <p class="lede">You build flows by dropping cards onto a canvas and connecting them. Triggers, conditions, destinations, and failure paths stay visible, so an auditor can read one too.</p>
       <div class="canvas panel block">
         <svg class="wide" viewBox="0 0 940 270" role="img" aria-label="Example flow: when a file arrives, files starting with NL_ go to a partner SFTP server, and others go to an archive. If delivery fails, the team is notified."><path class="e" d="M210 135 H252"/><path class="a" d="M260 135 l -8 -4.5 v 9 z"/><path class="e" d="M460 135 C500 135 500 53 532 53"/><path class="a" d="M540 53 l -8 -4.5 v 9 z"/><text x="470" y="78" class="t" text-anchor="start">yes</text><path class="e" d="M460 135 C500 135 500 217 532 217"/><path class="a" d="M540 217 l -8 -4.5 v 9 z"/><text x="472" y="204" class="t" text-anchor="start">no</text><path class="e f" d="M740 53 H772"/><path class="a f" d="M780 53 l -8 -4.5 v 9 z"/><text x="756" y="42" class="t" text-anchor="middle">fails</text><g transform="translate(10 92)"><rect class="card hot" width="200" height="86"/><text x="14" y="24" class="k">TRIGGER</text><text x="14" y="50" class="v">File arrives</text><text x="14" y="70" class="d">from vm-finance-01</text></g><g transform="translate(260 92)"><rect class="card" width="200" height="86"/><text x="14" y="24" class="k">CONDITION</text><text x="14" y="50" class="v">Name starts NL_</text><text x="14" y="70" class="d">rule on file name</text></g><g transform="translate(540 10)"><rect class="card" width="200" height="86"/><text x="14" y="24" class="k">DESTINATION</text><text x="14" y="50" class="v">Partner SFTP</text><text x="14" y="70" class="d">partner's server</text></g><g transform="translate(540 174)"><rect class="card" width="200" height="86"/><text x="14" y="24" class="k">DESTINATION</text><text x="14" y="50" class="v">Archive</text><text x="14" y="70" class="d">to vm-archive-01</text></g><g transform="translate(780 10)"><rect class="card" width="150" height="86"/><text x="14" y="24" class="k">OUTCOME</text><text x="14" y="50" class="v">Notify team</text><text x="14" y="70" class="d">on failure</text></g></svg>
         <svg class="narrow" viewBox="0 0 340 494" role="img" aria-label="Example flow: when a file arrives, files starting with NL_ go to a partner SFTP server, and others go to an archive. If delivery fails, the team is notified."><path class="e" d="M170 96 V118"/><path class="a" d="M170 126 l -4.5 -8 h 9 z"/><path class="e" d="M170 212 C170 240 85 232 85 254"/><path class="a" d="M85 262 l -4.5 -8 h 9 z"/><text x="58" y="251" class="t" text-anchor="start">yes</text><path class="e" d="M170 212 C170 240 255 232 255 254"/><path class="a" d="M255 262 l -4.5 -8 h 9 z"/><text x="266" y="251" class="t" text-anchor="start">no</text><path class="e f" d="M85 348 V390"/><path class="a f" d="M85 398 l -4.5 -8 h 9 z"/><text x="95" y="376" class="t" text-anchor="start">fails</text><g transform="translate(70 10)"><rect class="card hot" width="200" height="86"/><text x="14" y="24" class="k">TRIGGER</text><text x="14" y="50" class="v">File arrives</text><text x="14" y="70" class="d">from vm-finance-01</text></g><g transform="translate(70 126)"><rect class="card" width="200" height="86"/><text x="14" y="24" class="k">CONDITION</text><text x="14" y="50" class="v">Name starts NL_</text><text x="14" y="70" class="d">rule on file name</text></g><g transform="translate(5 262)"><rect class="card" width="160" height="86"/><text x="14" y="24" class="k">DESTINATION</text><text x="14" y="50" class="v">Partner SFTP</text><text x="14" y="70" class="d">partner's server</text></g><g transform="translate(175 262)"><rect class="card" width="160" height="86"/><text x="14" y="24" class="k">DESTINATION</text><text x="14" y="50" class="v">Archive</text><text x="14" y="70" class="d">to vm-archive-01</text></g><g transform="translate(5 398)"><rect class="card" width="160" height="86"/><text x="14" y="24" class="k">OUTCOME</text><text x="14" y="50" class="v">Notify team</text><text x="14" y="70" class="d">on failure</text></g></svg>
@@ -281,8 +281,8 @@
         </div>
         <div>
           <p class="label">Compliance</p>
-          <h2>Evidence, not promises.</h2>
-          <p class="lede">Audit trails, access control, encryption, and retention settings are designed to support your GDPR, NIS2, and DORA work. Those laws bind organizations, not software, so Meerkat is designed to help you show compliance rather than claim it.</p>
+          <h2>Records you can show an auditor.</h2>
+          <p class="lede">Audit trails, access control, encryption, and retention settings are designed to support your GDPR, NIS2, and DORA work. Those laws bind organizations, not software, so showing compliance stays your job. Meerkat is meant to give you the records to do it.</p>
         </div>
       </div>
     </section>
@@ -293,10 +293,10 @@
       <ol class="planned block">
         <li><h3>Connects to what you have</h3><p>Local files first, then SFTP, S3, Azure Blob, and SMB.</p></li>
         <li><h3>API first</h3><p>Everything in the console is available through a REST API, for CLIs and ITSM tools.</p></li>
-        <li><h3>Built for failure</h3><p>Interrupted deliveries retry and resume, and source files stay until every delivery succeeds.</p></li>
-        <li><h3>Careful engineering</h3><p>Services written in Go, with signed releases, SBOMs, and no custom cryptography.</p></li>
+        <li><h3>Recovers from failures</h3><p>Interrupted deliveries retry and resume, and source files stay until every delivery succeeds.</p></li>
+        <li><h3>How it's built</h3><p>Services written in Go, with signed releases, SBOMs, and no custom cryptography.</p></li>
       </ol>
-      <p class="note">Planned. None of this is built yet.</p>
+      <p class="note">None of this is built yet.</p>
     </section>
 
     <section>

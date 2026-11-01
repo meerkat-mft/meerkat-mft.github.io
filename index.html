@@ -47,6 +47,8 @@
     html { background: var(--ink-deep); -webkit-text-size-adjust: 100%; }
     body { margin: 0; background: var(--ink); color: var(--cream); font: 400 15px/1.65 var(--mono); overflow-x: hidden; }
     a { color: inherit; }
+    a.tag { text-decoration: none; }
+    a.tag:hover, a.tag:focus-visible { background: var(--amber); color: var(--ink); }
     h1, h2, h3, p, ol, dl, dd { margin: 0; padding: 0; }
     ol { list-style: none; }
 
@@ -206,7 +208,7 @@
       <div>
         <p class="label">The idea</p>
         <h2>It sees every delivery. Not what's inside.</h2>
-        <p class="lede">Meerkat is a managed file transfer orchestrator that will be open source. Agents on your own systems do the reading and writing. The orchestrator is designed to direct and record every delivery while file contents and credentials stay unreadable to it.</p>
+        <p class="lede">Meerkat is an open source managed file transfer orchestrator. Agents on your own systems do the reading and writing. The orchestrator is designed to direct and record every delivery while file contents and credentials stay unreadable to it.</p>
       </div>
       <div>
         <article class="manifest panel" aria-label="Example of what the orchestrator would record for one delivery">
@@ -303,14 +305,14 @@
       <p class="label">Follow along</p>
       <h2>Not much to run yet.</h2>
       <ol class="follow block">
-        <li class="panel"><h3>Source code</h3><p>The public repository, with the design decisions behind it.</p><span class="tag">Coming soon</span></li>
-        <li class="panel"><h3>Security policy</h3><p>How to report a vulnerability, and what happens next.</p><span class="tag">Coming soon</span></li>
+        <li class="panel"><h3>Source code</h3><p>The public repository, with the design decisions behind it.</p><a class="tag" href="https://github.com/meerkat-mft/mmft">View on GitHub</a></li>
+        <li class="panel"><h3>Security policy</h3><p>How to report a vulnerability, and what happens next.</p><a class="tag" href="https://github.com/meerkat-mft/mmft/blob/main/SECURITY.md">Read the policy</a></li>
       </ol>
     </section>
   </main>
 
   <footer>
-    <span>Will be open source under AGPL 3.0. Not ready for real use.</span>
+    <span>Open source under AGPL 3.0. Not ready for real use.</span>
     <span>mmft.dev</span>
   </footer>
 </body>

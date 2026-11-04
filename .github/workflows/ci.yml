@@ -28,6 +28,7 @@ jobs:
         with:
           args: >-
             --no-progress
+            --exclude-loopback
             --root-dir "${{ github.workspace }}"
             --exclude-path _site
             "**/*.html" "**/*.md" ".well-known/security.txt"

@@ -1,0 +1,6 @@
+Contact: https://github.com/meerkat-mft/meerkat-mft.github.io/security/advisories/new
+Contact: https://github.com/meerkat-mft/mmft/security/advisories/new
+Policy: https://github.com/meerkat-mft/meerkat-mft.github.io/blob/main/SECURITY.md
+Canonical: https://mmft.dev/.well-known/security.txt
+Preferred-Languages: en, nl
+Expires: 2027-11-01T00:00:00.000Z

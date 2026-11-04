@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  html:
+    name: HTML validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npx --yes html-validate@9 "**/*.html"
+
+  links:
+    name: Link check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --root-dir "${{ github.workspace }}"
+            --exclude-path _site
+            "**/*.html" "**/*.md" ".well-known/security.txt"
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  go-import:
+    name: Go vanity-import pages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Every module directory carries a go-import tag
+        run: |
+          status=0
+          for page in $(find . -mindepth 2 -name index.html -not -path './_site/*' -not -path './.git/*'); do
+            if grep -q '<meta name="go-import" content="mmft.dev/' "$page"; then
+              echo "ok   $page"
+            else
+              echo "FAIL $page has no go-import meta tag"
+              status=1
+            fi
+          done
+          exit $status
+
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: false

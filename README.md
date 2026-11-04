@@ -6,7 +6,7 @@
 
 Source for [mmft.dev](https://mmft.dev), the website for [Meerkat MFT](https://github.com/meerkat-mft/mmft), an open source managed file transfer orchestrator in early development.
 
-The site is a single static page served by GitHub Pages. It has no build step, no JavaScript and no third-party requests.
+The site is a single static page served by GitHub Pages. It has no JavaScript and no third-party requests.
 
 ## Layout
 
@@ -19,6 +19,8 @@ The site is a single static page served by GitHub Pages. It has no build step, n
 | `.well-known/security.txt` | Where to report security issues ([RFC 9116](https://www.rfc-editor.org/rfc/rfc9116)). |
 | `CNAME` | Custom domain for GitHub Pages. |
 | `.nojekyll` | Tells Pages to serve the files as they are. |
+| `.github/workflows/` | Deploy and CI workflows. |
+| `.htmlvalidate.json`, `lighthouserc.json` | CI configuration; not published. |
 
 ## Local preview
 
@@ -32,7 +34,15 @@ Then open <http://localhost:8000>.
 
 ## Deployment
 
-Merging to `main` publishes the site. GitHub Pages serves the `main` branch root directly; there is no workflow yet. The custom domain is verified against the `meerkat-mft` organisation and HTTPS is enforced.
+Merging to `main` publishes the site through the [Deploy workflow](.github/workflows/deploy.yml). It copies the repository into `_site/`, leaving out repo files such as this README, and hands that to GitHub Pages. Each deploy is listed under the repository's `github-pages` environment, where an earlier one can be redeployed. The custom domain is verified against the `meerkat-mft` organisation and HTTPS is enforced.
+
+Pull requests run the [CI workflow](.github/workflows/ci.yml): HTML validation ([html-validate](https://html-validate.org/), config in `.htmlvalidate.json`), a link check ([lychee](https://lychee.cli.rs/)), a check that every module directory carries a `go-import` tag, and [Lighthouse](https://github.com/GoogleChrome/lighthouse-ci) with the thresholds in `lighthouserc.json`.
+
+To run the validator locally:
+
+```bash
+npx html-validate "**/*.html"
+```
 
 ## Go vanity imports
 

@@ -41,16 +41,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - name: Every module directory carries a go-import tag
+      - name: Every module directory carries go-import and go-source tags
         run: |
           status=0
           for page in $(find . -mindepth 2 -name index.html -not -path './_site/*' -not -path './.git/*'); do
-            if grep -q '<meta name="go-import" content="mmft.dev/' "$page"; then
-              echo "ok   $page"
-            else
-              echo "FAIL $page has no go-import meta tag"
-              status=1
-            fi
+            module="${page#./}"; module="mmft.dev/${module%/index.html}"
+            for tag in go-import go-source; do
+              if grep -q "<meta name=\"$tag\" content=\"$module " "$page"; then
+                echo "ok   $page $tag"
+              else
+                echo "FAIL $page has no $tag meta tag for $module"
+                status=1
+              fi
+            done
           done
           exit $status
 

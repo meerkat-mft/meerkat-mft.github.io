@@ -13,9 +13,11 @@ The site is a single static page served by GitHub Pages. It has no JavaScript an
 | Path | Purpose |
 | --- | --- |
 | `index.html` | The landing page. Markup and CSS in one file. |
+| `404.html` | Served by Pages for any unknown path. |
 | `fonts/` | Self-hosted Fraunces and IBM Plex Mono, with their licences. |
 | `mmft/index.html` | Go vanity-import page for `mmft.dev/mmft`. See below. |
 | `og.png`, `meerkat-*.png`, `meerkat-logo.svg` | Social preview image and icons. |
+| `robots.txt`, `sitemap.xml` | Crawler hints. The sitemap lists the front page only. |
 | `.well-known/security.txt` | Where to report security issues ([RFC 9116](https://www.rfc-editor.org/rfc/rfc9116)). |
 | `CNAME` | Custom domain for GitHub Pages. |
 | `.nojekyll` | Tells Pages to serve the files as they are. |
@@ -36,7 +38,7 @@ Then open <http://localhost:8000>.
 
 Merging to `main` publishes the site through the [Deploy workflow](.github/workflows/deploy.yml). It copies the repository into `_site/`, leaving out repo files such as this README, and hands that to GitHub Pages. Each deploy is listed under the repository's `github-pages` environment, where an earlier one can be redeployed. The custom domain is verified against the `meerkat-mft` organisation and HTTPS is enforced.
 
-Pull requests run the [CI workflow](.github/workflows/ci.yml): HTML validation ([html-validate](https://html-validate.org/), config in `.htmlvalidate.json`), a link check ([lychee](https://lychee.cli.rs/)), a check that every module directory carries a `go-import` tag, and [Lighthouse](https://github.com/GoogleChrome/lighthouse-ci) with the thresholds in `lighthouserc.json`.
+Pull requests run the [CI workflow](.github/workflows/ci.yml): HTML validation ([html-validate](https://html-validate.org/), config in `.htmlvalidate.json`), a link check ([lychee](https://lychee.cli.rs/)), a check that every module directory carries `go-import` and `go-source` tags, and [Lighthouse](https://github.com/GoogleChrome/lighthouse-ci) with the thresholds in `lighthouserc.json`.
 
 To run the validator locally:
 
@@ -46,13 +48,23 @@ npx html-validate "**/*.html"
 
 ## Go vanity imports
 
-`go get mmft.dev/mmft` works because `mmft/index.html` carries a `go-import` meta tag pointing at the GitHub repository:
+`go get mmft.dev/mmft` works because `mmft/index.html` carries a `go-import` meta tag pointing at the GitHub repository, and a `go-source` tag so pkg.go.dev can link to files and lines:
 
 ```html
 <meta name="go-import" content="mmft.dev/mmft git https://github.com/meerkat-mft/mmft">
+<meta name="go-source" content="mmft.dev/mmft https://github.com/meerkat-mft/mmft https://github.com/meerkat-mft/mmft/tree/main{/dir} https://github.com/meerkat-mft/mmft/blob/main{/dir}/{file}#L{line}">
 ```
 
-The Go tool fetches this page over HTTPS and does not run JavaScript, so the tag has to be in static HTML. Subpackages such as `mmft.dev/mmft/cmd/...` resolve through the same page. A new module under `mmft.dev/` needs its own directory with an equivalent page.
+The Go tool fetches this page over HTTPS and does not run JavaScript, so the tags have to be in static HTML. Subpackages such as `mmft.dev/mmft/cmd/...` resolve through the same page. A new module under `mmft.dev/` needs its own directory with an equivalent page; CI checks that every such directory carries both tags for its own path.
+
+## Security headers
+
+GitHub Pages does not let a site set HTTP response headers, so the pages carry what can be expressed in `<meta>` tags instead:
+
+- A `Content-Security-Policy` of `default-src 'none'` with only same-origin styles, fonts and images allowed. The `style-src 'unsafe-inline'` is for the page's own `<style>` block; there is no script.
+- `referrer` set to `strict-origin-when-cross-origin`.
+
+Not possible on Pages, and known gaps if you scan the site: `frame-ancestors` and `X-Frame-Options` (a meta CSP cannot carry `frame-ancestors`), `Permissions-Policy`, and custom `Cache-Control`. HSTS is covered by the `.dev` top-level domain being on the browser preload list.
 
 ## Contributing
 

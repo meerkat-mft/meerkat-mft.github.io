@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Meerkat MFT</title>
   <meta name="description" content="Meerkat MFT is an early-stage managed file transfer orchestrator designed to direct every delivery without being able to read your files.">
   <meta name="theme-color" content="#14202E">
@@ -18,6 +20,35 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://mmft.dev/#org",
+        "name": "Meerkat MFT",
+        "url": "https://mmft.dev/",
+        "logo": "https://mmft.dev/meerkat-icon-180.png",
+        "sameAs": ["https://github.com/meerkat-mft"]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://mmft.dev/#app",
+        "name": "Meerkat MFT",
+        "url": "https://mmft.dev/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Linux",
+        "description": "An open source managed file transfer orchestrator that directs and records every delivery without being able to read your files. In early development.",
+        "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+        "codeRepository": "https://github.com/meerkat-mft/mmft",
+        "programmingLanguage": "Go",
+        "isAccessibleForFree": true,
+        "author": { "@id": "https://mmft.dev/#org" }
+      }
+    ]
+  }
+  </script>
   <link rel="preload" href="/fonts/fraunces-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <style>

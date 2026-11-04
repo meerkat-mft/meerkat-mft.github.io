@@ -61,7 +61,7 @@ The Go tool fetches this page over HTTPS and does not run JavaScript, so the tag
 
 GitHub Pages does not let a site set HTTP response headers, so the pages carry what can be expressed in `<meta>` tags instead:
 
-- A `Content-Security-Policy` of `default-src 'none'` with only same-origin styles, fonts and images allowed. The `style-src 'unsafe-inline'` is for the page's own `<style>` block; there is no script.
+- A `Content-Security-Policy` of `default-src 'none'` with only same-origin styles, fonts, images and connections allowed. The `style-src 'unsafe-inline'` is for the page's own `<style>` block; there is no script.
 - `referrer` set to `strict-origin-when-cross-origin`.
 
 Not possible on Pages, and known gaps if you scan the site: `frame-ancestors` and `X-Frame-Options` (a meta CSP cannot carry `frame-ancestors`), `Permissions-Policy`, and custom `Cache-Control`. HSTS is covered by the `.dev` top-level domain being on the browser preload list.

@@ -1,0 +1,63 @@
+# AI assistants (local only, never published)
+# Claude Code
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+.mcp.json
+# Cross-tool instruction files (Codex, Copilot, Jules, Amp, …)
+AGENTS.md
+.agents/
+# OpenAI Codex
+.codex/
+# GitHub Copilot
+.github/copilot-instructions.md
+.github/instructions/
+.github/prompts/
+.github/agents/
+# Cursor
+.cursor/
+.cursorrules
+.cursorignore
+.cursorindexingignore
+# Windsurf
+.windsurf/
+.windsurfrules
+# Cline / Roo Code
+.clinerules
+.clinerules/
+.cline/
+.roo/
+.roomodes
+# Aider
+.aider*
+# Google Gemini CLI / Jules
+.gemini/
+GEMINI.md
+# Continue
+.continue/
+# Amazon Q / Kiro
+.amazonq/
+.kiro/
+# JetBrains Junie
+.junie/
+# Zed, Trae, Augment, Sourcegraph Cody
+.rules
+.trae/
+.augment/
+.sourcegraph/
+# Session logs
+.specstory/
+
+# macOS
+.DS_Store
+._*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Local preview / build output
+node_modules/
+dist/
+.cache/

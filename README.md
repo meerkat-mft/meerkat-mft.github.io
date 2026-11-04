@@ -56,6 +56,10 @@ See [SECURITY.md](SECURITY.md).
 
 ## Licence
 
-The HTML, CSS and build files in this repository are licensed under the [MIT Licence](LICENSE).
+The HTML, CSS and build files in this repository are licensed under the [MIT Licence](LICENSE), so you are welcome to reuse the layout, the font setup or the `go-import` page pattern.
 
-Not covered by that licence: the Meerkat MFT name and logo, and the fonts in `fonts/`, which are distributed under their own licences ([Fraunces](fonts/LICENSE-Fraunces.txt), [IBM Plex Mono](fonts/LICENSE-IBM-Plex-Mono.txt)).
+Not covered by that licence:
+
+- The written content of the site (the product copy) is © Meerkat MFT contributors. Quote it, but don't republish it as your own.
+- The Meerkat MFT name and logo.
+- The fonts in `fonts/`, which are distributed under the SIL Open Font License ([Fraunces](fonts/LICENSE-Fraunces.txt), [IBM Plex Mono](fonts/LICENSE-IBM-Plex-Mono.txt)).

@@ -58,6 +58,21 @@ jobs:
           done
           exit $status
 
+  status:
+    name: Project status script
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: The script fills every placeholder from the live API
+        run: |
+          python3 scripts/status.py index.html "$RUNNER_TEMP/index.html" --strict
+          grep -c 'data-status=' "$RUNNER_TEMP/index.html"
+          if grep -qE 'data-status="(release|issues)">(Release candidates|A handful)<' "$RUNNER_TEMP/index.html"; then
+            echo "fallback text still present"; exit 1
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   lighthouse:
     name: Lighthouse
     runs-on: ubuntu-latest

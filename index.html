@@ -168,6 +168,11 @@
     .planned li { padding: 20px 0; border-bottom: 1px solid var(--line); }
 
     /* Follow along */
+    .pulse { display: flex; flex-wrap: wrap; gap: 18px clamp(36px, 5vw, 72px); padding-top: 22px; border-top: 1px solid var(--line); }
+    .pulse dt { font-size: 12px; color: var(--muted); }
+    .pulse dd { margin-top: 4px; font: 400 clamp(21px, 2.2vw, 26px)/1.2 var(--serif); letter-spacing: -.01em; }
+    .pulse a { text-decoration: none; }
+    .pulse a:hover { text-decoration: underline; text-decoration-color: var(--amber); }
     .follow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
     .follow li { padding: 22px; }
     .follow .tag { margin-top: 16px; }
@@ -335,6 +340,12 @@
     <section>
       <p class="label">Follow along</p>
       <h2>Not much to run yet.</h2>
+      <dl class="pulse block">
+        <div><dt>Latest release</dt><dd><a data-status="release-url" href="https://github.com/meerkat-mft/mmft/releases"><span data-status="release">Release candidates</span></a></dd></div>
+        <div><dt>Last commit</dt><dd><time data-status="commit-date">Recently</time></dd></div>
+        <div><dt>Open issues</dt><dd><a href="https://github.com/meerkat-mft/mmft/issues"><span data-status="issues">A handful</span></a></dd></div>
+      </dl>
+      <p class="note" data-status="updated">Figures are read from GitHub at each deploy.</p>
       <ol class="follow block">
         <li class="panel"><h3>Source code</h3><p>The public repository, with the design decisions behind it.</p><a class="tag" href="https://github.com/meerkat-mft/mmft">View on GitHub</a></li>
         <li class="panel"><h3>Security policy</h3><p>How to report a vulnerability, and what happens next.</p><a class="tag" href="https://github.com/meerkat-mft/mmft/blob/main/SECURITY.md">Read the policy</a></li>

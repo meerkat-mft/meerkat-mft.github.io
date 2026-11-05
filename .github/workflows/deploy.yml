@@ -3,6 +3,9 @@ name: Deploy
 on:
   push:
     branches: [main]
+  schedule:
+    # Nightly, so the project-status figures on the page stay current.
+    - cron: "17 4 * * *"
   workflow_dispatch:
 
 permissions:
@@ -26,8 +29,14 @@ jobs:
           rsync -a --delete ./ _site/ \
             --exclude .git --exclude .github --exclude _site \
             --exclude README.md --exclude LICENSE --exclude SECURITY.md \
-            --exclude .gitignore --exclude .htmlvalidate.json --exclude lighthouserc.json
+            --exclude .gitignore --exclude .htmlvalidate.json --exclude lighthouserc.json \
+            --exclude scripts
           find _site -type f | sort
+
+      - name: Fill in the project-status figures
+        run: python3 scripts/status.py _site/index.html _site/index.html
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/configure-pages@v6
 

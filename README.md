@@ -21,6 +21,7 @@ The site is a single static page served by GitHub Pages. It has no JavaScript an
 | `.well-known/security.txt` | Where to report security issues ([RFC 9116](https://www.rfc-editor.org/rfc/rfc9116)). |
 | `CNAME` | Custom domain for GitHub Pages. |
 | `.nojekyll` | Tells Pages to serve the files as they are. |
+| `scripts/status.py` | Fills the project-status figures at deploy time. See below. |
 | `.github/workflows/` | Deploy and CI workflows. |
 | `.htmlvalidate.json`, `lighthouserc.json` | CI configuration; not published. |
 
@@ -36,7 +37,7 @@ Then open <http://localhost:8000>.
 
 ## Deployment
 
-Merging to `main` publishes the site through the [Deploy workflow](.github/workflows/deploy.yml). It copies the repository into `_site/`, leaving out repo files such as this README, and hands that to GitHub Pages. Each deploy is listed under the repository's `github-pages` environment, where an earlier one can be redeployed. The custom domain is verified against the `meerkat-mft` organisation and HTTPS is enforced.
+Merging to `main` publishes the site through the [Deploy workflow](.github/workflows/deploy.yml). It copies the repository into `_site/`, leaving out repo files such as this README, fills in the project-status figures, and hands the result to GitHub Pages. The workflow also runs nightly so those figures stay current. Each deploy is listed under the repository's `github-pages` environment, where an earlier one can be redeployed. The custom domain is verified against the `meerkat-mft` organisation and HTTPS is enforced.
 
 Pull requests run the [CI workflow](.github/workflows/ci.yml): HTML validation ([html-validate](https://html-validate.org/), config in `.htmlvalidate.json`), a link check ([lychee](https://lychee.cli.rs/)), a check that every module directory carries `go-import` and `go-source` tags, and [Lighthouse](https://github.com/GoogleChrome/lighthouse-ci) with the thresholds in `lighthouserc.json`.
 
@@ -45,6 +46,12 @@ To run the validator locally:
 ```bash
 npx html-validate "**/*.html"
 ```
+
+## Project status figures
+
+The "Follow along" section shows the latest release, the date of the last commit and the number of open issues in the [mmft repository](https://github.com/meerkat-mft/mmft). The page in this repository carries fallback text in elements marked `data-status="…"`; at deploy time [`scripts/status.py`](scripts/status.py) reads the GitHub API and replaces it. If the API is unreachable the fallback text ships and the deploy still succeeds. CI runs the script with `--strict` so a broken placeholder or API change is caught on the pull request.
+
+Nothing runs in the browser; the figures are plain text in the published HTML.
 
 ## Go vanity imports
 

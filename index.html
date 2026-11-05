@@ -78,6 +78,7 @@
     html { background: var(--ink-deep); -webkit-text-size-adjust: 100%; }
     body { margin: 0; background: var(--ink); color: var(--cream); font: 400 15px/1.65 var(--mono); overflow-x: hidden; }
     a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
     a.tag { text-decoration: none; }
     a.tag:hover, a.tag:focus-visible { background: var(--amber); color: var(--ink); }
     h1, h2, h3, p, ol, dl, dd { margin: 0; padding: 0; }
@@ -91,7 +92,7 @@
     .lede { margin-top: 20px; max-width: 58ch; color: var(--muted); }
     .lede + .lede { margin-top: 14px; }
     .note { margin-top: 14px; font-size: 12px; color: var(--muted); }
-    .tag { display: inline-block; padding: 3px 9px; border: 1px solid var(--amber); font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
+    .tag { display: inline-block; padding: 6px 12px; border: 1px solid var(--amber); font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
 
     /* Surfaces */
     .panel { border: 1px solid var(--line); background: var(--ink-raised); }
@@ -181,8 +182,9 @@
     .pulse { display: flex; flex-wrap: wrap; gap: 18px clamp(36px, 5vw, 72px); padding-top: 22px; border-top: 1px solid var(--line); }
     .pulse dt { font-size: 12px; color: var(--muted); }
     .pulse dd { margin-top: 4px; font: 400 clamp(21px, 2.2vw, 26px)/1.2 var(--serif); letter-spacing: -.01em; }
-    .pulse a { text-decoration: none; }
-    .pulse a:hover { text-decoration: underline; text-decoration-color: var(--amber); }
+    .pulse a { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 5px; }
+    .pulse a:hover { text-decoration-color: var(--amber); }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
     .follow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
     .follow li { padding: 22px; }
     .follow .tag { margin-top: 16px; }
@@ -208,7 +210,7 @@
     @supports (animation-timeline: view()) {
       main > section > * { animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% entry 28%; }
     }
-    @keyframes reveal { from { opacity: 0; transform: translateY(18px); } }
+    @keyframes reveal { from { transform: translateY(18px); } }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; }
@@ -353,9 +355,9 @@
       <p class="label">Follow along</p>
       <h2>Not much to run yet.</h2>
       <dl class="pulse block">
-        <div><dt>Latest release</dt><dd><a data-status="release-url" href="https://github.com/meerkat-mft/mmft/releases"><span data-status="release">Release candidates</span></a></dd></div>
+        <div><dt>Latest release</dt><dd><a data-status="release-url" href="https://github.com/meerkat-mft/mmft/releases"><span data-status="release">Release candidates</span><span class="sr-only">, latest release on GitHub</span></a></dd></div>
         <div><dt>Last commit</dt><dd><time data-status="commit-date">Recently</time></dd></div>
-        <div><dt>Open issues</dt><dd><a href="https://github.com/meerkat-mft/mmft/issues"><span data-status="issues">A handful</span></a></dd></div>
+        <div><dt>Open issues</dt><dd><a href="https://github.com/meerkat-mft/mmft/issues"><span data-status="issues">A handful</span><span class="sr-only"> open issues on GitHub</span></a></dd></div>
       </dl>
       <p class="note" data-status="updated">Figures are read from GitHub at each deploy.</p>
       <ol class="follow block">

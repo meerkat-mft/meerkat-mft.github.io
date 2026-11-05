@@ -30,6 +30,7 @@ jobs:
             --no-progress
             --exclude-loopback
             --root-dir "${{ github.workspace }}"
+            --remap 'https://mmft.dev/(.*) file://${{ github.workspace }}/$1'
             --exclude-path _site
             "**/*.html" "**/*.md" ".well-known/security.txt"
           fail: true

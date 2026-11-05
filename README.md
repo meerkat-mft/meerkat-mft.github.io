@@ -6,13 +6,14 @@
 
 Source for [mmft.dev](https://mmft.dev), the website for [Meerkat MFT](https://github.com/meerkat-mft/mmft), an open source managed file transfer orchestrator in early development.
 
-The site is a single static page served by GitHub Pages. It has no JavaScript and no third-party requests.
+The site is a single static page served by GitHub Pages, with one small script that animates the diagrams. It makes no third-party requests.
 
 ## Layout
 
 | Path | Purpose |
 | --- | --- |
 | `index.html` | The landing page. Markup and CSS in one file. |
+| `flow.js` | Animates a delivery through the two diagrams. Off under `prefers-reduced-motion`, off screen, or in a hidden tab. |
 | `404.html` | Served by Pages for any unknown path. |
 | `fonts/` | Self-hosted Fraunces and IBM Plex Mono, with their licences. |
 | `mmft/index.html` | Go vanity-import page for `mmft.dev/mmft`. See below. |
@@ -68,7 +69,7 @@ The Go tool fetches this page over HTTPS and does not run JavaScript, so the tag
 
 GitHub Pages does not let a site set HTTP response headers, so the pages carry what can be expressed in `<meta>` tags instead:
 
-- A `Content-Security-Policy` of `default-src 'none'` with only same-origin styles, fonts, images and connections allowed. The `style-src 'unsafe-inline'` is for the page's own `<style>` block; there is no script.
+- A `Content-Security-Policy` of `default-src 'none'` with only same-origin styles, fonts, images, scripts and connections allowed. The `style-src 'unsafe-inline'` is for the page's own `<style>` block; scripts must be separate files served from this origin, so no inline script can run.
 - `referrer` set to `strict-origin-when-cross-origin`.
 
 Not possible on Pages, and known gaps if you scan the site: `frame-ancestors` and `X-Frame-Options` (a meta CSP cannot carry `frame-ancestors`), `Permissions-Policy`, and custom `Cache-Control`. HSTS is covered by the `.dev` top-level domain being on the browser preload list.
